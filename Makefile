@@ -4,7 +4,7 @@ RM		= rm -f
 CFLAGS	+= -ansi -Werror -Wall -Wextra
 LDFLAGS	+=
 
-all: true false
+all: true false echo
 
 true: src/true.o
 	$(CC) $(LDFLAGS) -o $@ $^
@@ -12,11 +12,14 @@ true: src/true.o
 false: src/false.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
+echo: src/echo.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
 clean:
 	$(RM) **/*.o
 
 fclean: clean
-	$(RM) true false
+	$(RM) true false echo
 
 re: fclean all
 
