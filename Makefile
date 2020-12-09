@@ -4,7 +4,7 @@ RM		= rm -f
 CFLAGS	+= -ansi -Werror -Wall -Wextra
 LDFLAGS	+=
 
-all: true false echo
+all: true false echo basename dirname logname
 
 true: src/true.o
 	$(CC) $(LDFLAGS) -o $@ $^
@@ -19,6 +19,9 @@ basename: src/basename.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 dirname: src/dirname.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+logname: src/logname.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
