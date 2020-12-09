@@ -15,6 +15,12 @@ false: src/false.o
 echo: src/echo.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
+basename: src/basename.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+dirname: src/dirname.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
 clean:
 	$(RM) **/*.o
 
