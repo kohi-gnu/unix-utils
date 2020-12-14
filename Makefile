@@ -1,7 +1,7 @@
 CC		?= gcc
 RM		= rm -f
 
-CFLAGS	+= -ansi -Werror -Wall -Wextra
+CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
 all: true false echo basename dirname logname tty cat
