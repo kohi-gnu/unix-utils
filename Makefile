@@ -4,7 +4,8 @@ RM		= rm -f
 CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
-all: true false echo basename dirname logname tty cat pwd sleep mkfifo uname
+all: true false echo basename dirname logname tty cat pwd sleep mkfifo uname \
+		touch
 
 true: src/true.o
 	$(CC) $(LDFLAGS) -o $@ $^
@@ -40,6 +41,9 @@ mkfifo: src/mkfifo.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 uname: src/uname.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+touch: src/touch.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
