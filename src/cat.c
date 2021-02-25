@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 static void
-read_fp(FILE *fp)
+read_fp(FILE * fp)
 {
-	int c;
+	int             c;
 
 	while ((c = fgetc(fp)) != EOF)
 	{
@@ -12,27 +13,64 @@ read_fp(FILE *fp)
 	}
 }
 
+static int
+process_file(const char *name, int unbuffered)
+{
+	FILE           *fp;
+
+	if (strcmp(name, "-") == 0)
+	{
+		fp = stdin;
+	}
+	else
+	{
+		fp = fopen(name, "rb");
+	}
+
+	if (fp == NULL)
+	{
+		perror("cat");
+		return (-1);
+	}
+
+	if (unbuffered)
+	{
+		if (setvbuf(fp, NULL, _IONBF, 0) != 0)
+		{
+			perror("cat");
+			return (-1);
+		}
+	}
+
+	read_fp(fp);
+	fclose(fp);
+	return (0);
+}
+
 int
 main(int argc, const char *argv[])
 {
-	int idx;
-	FILE *fp;
+	int             idx;
+	int             unbuffered;
 
 	if (argc == 1)
 	{
 		read_fp(stdin);
 		return (EXIT_SUCCESS);
 	}
-	for (idx = 1; idx < argc; idx++)
+	idx = 1;
+	unbuffered = 0;
+	if (strcmp(argv[idx], "-u") == 0)
 	{
-		fp = fopen(argv[idx], "rb");
-		if (fp == NULL)
+		unbuffered = 1;
+		idx++;
+	}
+	for (; idx < argc; idx++)
+	{
+		if (process_file(argv[idx], unbuffered) != 0)
 		{
-			perror("cat");
 			return (EXIT_FAILURE);
 		}
-		read_fp(fp);
-		fclose(fp);
 	}
 	return (EXIT_SUCCESS);
 }
