@@ -1,11 +1,16 @@
 CC		?= gcc
 RM		= rm -f
-
+PROGRAMS = true false echo \
+					 basename dirname logname \
+					 tty cat pwd sleep mkfifo \
+					 uname touch head arch
 CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
-all: true false echo basename dirname logname tty cat pwd sleep mkfifo uname \
-		touch head
+all: $(PROGRAMS)
+
+arch: src/arch.o
+	$(CC) $(LD_FLAGS) -o $@ $^
 
 true: src/true.o
 	$(CC) $(LDFLAGS) -o $@ $^
@@ -53,7 +58,7 @@ clean:
 	$(RM) **/*.o
 
 fclean: clean
-	$(RM) true false echo
+	$(RM) $(PROGRAMS)
 
 re: fclean all
 
