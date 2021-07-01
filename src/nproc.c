@@ -8,7 +8,8 @@ static int all = 0;
 void
 decode_flags (int argc, char *argv[])
 {
-  int optidx, c;struct option long_options[] = {
+  int optidx, c;
+  struct option long_options[] = {
     { "all", no_argument, &all, 1 },
   };
   all = 0;
