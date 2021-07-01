@@ -3,11 +3,14 @@ RM		= rm -f
 PROGRAMS = true false echo \
 					 basename dirname logname \
 					 tty cat pwd sleep mkfifo \
-					 uname touch head arch
+					 uname touch head arch nproc
 CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
 all: $(PROGRAMS)
+
+nproc: src/nproc.o
+	$(CC) $(LD_FLAGS) -o $@ $^
 
 arch: src/arch.o
 	$(CC) $(LD_FLAGS) -o $@ $^
