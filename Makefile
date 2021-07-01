@@ -4,11 +4,14 @@ PROGRAMS = true false echo \
 					 basename dirname logname \
 					 tty cat pwd sleep mkfifo \
 					 uname touch head arch nproc \
-					 yes
+					 yes printenv
 CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
 all: $(PROGRAMS)
+
+printenv: src/printenv.o
+	$(CC) $(LD_FLAGS) -o $@ $^
 
 yes: src/yes.o
 	$(CC) $(LD_FLAGS) -o $@ $^

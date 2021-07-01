@@ -1,6 +1,6 @@
-#include <sys/utsname.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/utsname.h>
 
 int
 main (void)
@@ -9,10 +9,10 @@ main (void)
   if (buf == NULL)
     return (EXIT_FAILURE);
   if (uname (buf) != 0)
-  {
-    free (buf);
-    return (EXIT_FAILURE);
-  }
+    {
+      free (buf);
+      return (EXIT_FAILURE);
+    }
   puts (buf->machine);
   free (buf);
   return (EXIT_SUCCESS);

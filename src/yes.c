@@ -7,14 +7,14 @@ main (int argc, const char *argv[])
     if (argc < 2)
       puts ("y");
     else
-    {
-      int i;
-      for (i = 1; i < argc; i++)
       {
-        printf ("%s", argv[i]);
-        if (i != argc - 1)
-          printf (" ");
+        int i;
+        for (i = 1; i < argc; i++)
+          {
+            printf ("%s", argv[i]);
+            if (i != argc - 1)
+              printf (" ");
+          }
+        puts ("");
       }
-      puts ("");
-    }
 }

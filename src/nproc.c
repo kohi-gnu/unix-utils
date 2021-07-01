@@ -1,7 +1,7 @@
-#include <sys/sysinfo.h>
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/sysinfo.h>
 
 static int all = 0;
 
@@ -14,10 +14,10 @@ decode_flags (int argc, char *argv[])
   };
   all = 0;
   optidx = 0;
-  
+
   while ((c = getopt_long (argc, argv, "a", long_options, &optidx)) != -1)
     switch (c)
-    {
+      {
       case 'a':
         all = 1;
         break;
@@ -25,7 +25,7 @@ decode_flags (int argc, char *argv[])
         exit (EXIT_FAILURE);
       default:
         break;
-    }
+      }
 }
 
 int
