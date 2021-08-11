@@ -70,16 +70,17 @@ main(int argc, const char *argv[])
 		perror("uname");
 		return (EXIT_FAILURE);
 	}
-	if (flags & CMD_M)
-		print_data(u.machine);
+
+	if (flags & CMD_S)
+		print_data(u.sysname);
 	if (flags & CMD_N)
 		print_data(u.nodename);
 	if (flags & CMD_R)
 		print_data(u.release);
-	if (flags & CMD_S)
-		print_data(u.sysname);
 	if (flags & CMD_V)
 		print_data(u.version);
+	if (flags & CMD_M)
+		print_data(u.machine);
 	putchar('\n');
 	return (EXIT_SUCCESS);
 }
