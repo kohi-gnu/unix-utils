@@ -5,7 +5,7 @@ CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
 all: true false echo basename dirname logname tty cat pwd sleep mkfifo uname \
-		touch head
+		touch head cksum
 
 true: src/true.o
 	$(CC) $(LDFLAGS) -o $@ $^
@@ -47,6 +47,9 @@ touch: src/touch.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 head: src/head.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+cksum: src/cksum.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
