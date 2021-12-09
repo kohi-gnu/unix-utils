@@ -1,63 +1,27 @@
 CC		?= gcc
 RM		= rm -f
 
-CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
+CFLAGS	+= -pedantic -Werror -Wall -Wextra
+ifneq ($(CC),tcc)
+CFLAGS	+= -ansi
+endif
 LDFLAGS	+=
 
-all: true false echo basename dirname logname tty cat pwd sleep mkfifo uname \
-		touch head cksum
+TARGETS = basename cat cksum dirname echo false head logname mkfifo pwd sleep \
+			 touch true tty uname
 
-true: src/true.o
+all: $(TARGETS)
+
+%: src/%.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
-false: src/false.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-echo: src/echo.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-basename: src/basename.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-dirname: src/dirname.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-logname: src/logname.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-tty: src/tty.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-cat: src/cat.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-pwd: src/pwd.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-sleep: src/sleep.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-mkfifo: src/mkfifo.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-uname: src/uname.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-touch: src/touch.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-head: src/head.o
-	$(CC) $(LDFLAGS) -o $@ $^
-
-cksum: src/cksum.o
-	$(CC) $(LDFLAGS) -o $@ $^
+src/%.o: src/%.c
+	$(CC) -o $@ -c $(CFLAGS) $<
 
 clean:
 	$(RM) **/*.o
+	$(RM) $(TARGETS)
 
-fclean: clean
-	$(RM) true false echo
+re: clean all
 
-re: fclean all
-
-.PHONY:all clean fclean re
+.PHONY:all clean re

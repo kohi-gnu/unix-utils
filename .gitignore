@@ -26,3 +26,21 @@
 
 # Editor crap
 *~
+
+# binary
+
+basename
+cat
+cksum
+dirname
+echo
+false
+head
+logname
+mkfifo
+pwd
+sleep
+touch
+true
+tty
+uname
