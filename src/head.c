@@ -23,10 +23,10 @@ process_file(FILE * fp, int nflag)
 int
 main(int argc, char *argv[])
 {
-	int             idx;
-	int             nflag;
-	int             has_nflag;
-	FILE           *fp;
+	int idx;
+	int nflag;
+	int has_nflag;
+	FILE *fp;
 
 	has_nflag = 0;
 	nflag = 10;

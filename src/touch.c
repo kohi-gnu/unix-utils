@@ -7,7 +7,7 @@
 static int
 parse_flags(int argc, char *argv[])
 {
-	int             opt;
+	int opt;
 
 	while ((opt = getopt(argc, argv, "acmrtd")) != -1)
 	{
@@ -19,7 +19,7 @@ parse_flags(int argc, char *argv[])
 static void
 process_file(const char *filename)
 {
-	int             fd;
+	int fd;
 
 	fd = creat(filename,
 			   S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
@@ -30,7 +30,7 @@ process_file(const char *filename)
 int
 main(int argc, const char *argv[])
 {
-	int             idx;
+	int idx;
 
 	if (argc < 2)
 		return (EXIT_FAILURE);

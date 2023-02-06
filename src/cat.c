@@ -5,7 +5,7 @@
 static void
 read_fp(FILE * fp)
 {
-	int             c;
+	int c;
 
 	while ((c = fgetc(fp)) != EOF)
 	{
@@ -16,7 +16,7 @@ read_fp(FILE * fp)
 static int
 process_file(const char *name, int unbuffered)
 {
-	FILE           *fp;
+	FILE *fp;
 
 	if (strcmp(name, "-") == 0)
 	{
@@ -50,8 +50,8 @@ process_file(const char *name, int unbuffered)
 int
 main(int argc, const char *argv[])
 {
-	int             idx;
-	int             unbuffered;
+	int idx;
+	int unbuffered;
 
 	if (argc == 1)
 	{

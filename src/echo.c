@@ -5,8 +5,8 @@
 int
 main(int argc, const char *argv[])
 {
-	int             idx;
-	int             nflag;
+	int idx;
+	int nflag;
 
 	nflag = 0;
 	idx = 1;

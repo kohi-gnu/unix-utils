@@ -12,8 +12,8 @@
 static int
 decode_flags(int argc, char *argv[])
 {
-	int             opt;
-	int             flags;
+	int opt;
+	int flags;
 
 	flags = 0;
 	while ((opt = getopt(argc, argv, "amnrsv")) != -1)
@@ -21,24 +21,24 @@ decode_flags(int argc, char *argv[])
 		switch (opt)
 		{
 		 case 'a':
-			 return (CMD_M | CMD_N | CMD_R | CMD_S | CMD_V);
+			return (CMD_M | CMD_N | CMD_R | CMD_S | CMD_V);
 		 case 'm':
-			 flags |= CMD_M;
-			 break;
+			flags |= CMD_M;
+			break;
 		 case 'n':
-			 flags |= CMD_N;
-			 break;
+			flags |= CMD_N;
+			break;
 		 case 'r':
-			 flags |= CMD_R;
-			 break;
+			flags |= CMD_R;
+			break;
 		 case 's':
-			 flags |= CMD_S;
-			 break;
+			flags |= CMD_S;
+			break;
 		 case 'v':
-			 flags |= CMD_V;
-			 break;
+			flags |= CMD_V;
+			break;
 		 default:
-			 break;
+			break;
 		}
 	}
 
@@ -50,7 +50,7 @@ decode_flags(int argc, char *argv[])
 static void
 print_data(char *str)
 {
-	static char     has_previous = 0;
+	static char has_previous = 0;
 
 	if (has_previous)
 		putchar(' ');
@@ -61,8 +61,8 @@ print_data(char *str)
 int
 main(int argc, const char *argv[])
 {
-	struct utsname  u;
-	int             flags;
+	struct utsname u;
+	int flags;
 
 	flags = decode_flags(argc, (char **)argv);
 	if (uname(&u) < 0)
